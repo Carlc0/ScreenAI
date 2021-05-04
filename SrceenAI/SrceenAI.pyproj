@@ -1,0 +1,80 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>b122893f-bea9-4674-b79f-dc89070c57c1</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>SrceenAI.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>SrceenAI</Name>
+    <RootNamespace>SrceenAI</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="lib\pyttsx3-master\docs\conf.py" />
+    <Compile Include="lib\pyttsx3-master\example\main.py" />
+    <Compile Include="lib\pyttsx3-master\example\repeatvoice.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\driver.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\drivers\dummy.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\drivers\espeak.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\drivers\nsss.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\drivers\sapi5.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\drivers\_espeak.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\drivers\__init__.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\engine.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\six.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\voice.py" />
+    <Compile Include="lib\pyttsx3-master\pyttsx3\__init__.py" />
+    <Compile Include="lib\pyttsx3-master\setup.py" />
+    <Compile Include="SrceenAI.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="lib\pyttsx3-master\" />
+    <Folder Include="lib\pyttsx3-master\.github\" />
+    <Folder Include="lib\pyttsx3-master\.github\workflows\" />
+    <Folder Include="lib\pyttsx3-master\docs\" />
+    <Folder Include="lib\pyttsx3-master\example\" />
+    <Folder Include="lib\pyttsx3-master\pyttsx3\" />
+    <Folder Include="lib\pyttsx3-master\pyttsx3\drivers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\pyttsx3-master\.github\logo.svg" />
+    <Content Include="lib\pyttsx3-master\.github\workflows\pythonpublish.yml" />
+    <Content Include="lib\pyttsx3-master\.gitignore" />
+    <Content Include="lib\pyttsx3-master\docs\drivers.rst" />
+    <Content Include="lib\pyttsx3-master\docs\engine.rst" />
+    <Content Include="lib\pyttsx3-master\docs\index.rst" />
+    <Content Include="lib\pyttsx3-master\docs\install.rst" />
+    <Content Include="lib\pyttsx3-master\docs\Makefile" />
+    <Content Include="lib\pyttsx3-master\docs\support.rst" />
+    <Content Include="lib\pyttsx3-master\example\voicefile.mp3" />
+    <Content Include="lib\pyttsx3-master\LICENSE" />
+    <Content Include="lib\pyttsx3-master\makefile" />
+    <Content Include="lib\pyttsx3-master\MANIFEST" />
+    <Content Include="lib\pyttsx3-master\README.md" />
+    <Content Include="lib\pyttsx3-master\README.rst" />
+    <Content Include="lib\pyttsx3-master\requirements.txt" />
+    <Content Include="lib\pyttsx3-master\setup.cfg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
