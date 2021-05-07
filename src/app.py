@@ -1,11 +1,16 @@
 #Imports
-import pyttsx3
-import os
-import subprocess
-import webbrowser
-import time
-import json
-import requests
+try:
+    import pyttsx3
+    import os
+    import subprocess
+    import webbrowser
+    import time
+    import json
+    import requests
+    from dotenv import load_dotenv
+except:
+    print("Error: library not found")
+
 
 #Inicializador de reconocimiento de voz
 engine = pyttsx3.init()
@@ -20,7 +25,8 @@ def hablar(texto):
 ##
 # Main function
 # 
-if __name__=='__main__':
+
+if __name__=='__name__':
     exit = False
     try:
         while (exit==False):

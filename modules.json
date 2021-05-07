@@ -1,0 +1,11 @@
+{
+    "core":[   
+        "pyttsx3",
+        "os",
+        "subprocess",
+        "webbrowser",
+        "time",
+        "json",
+        "requests"
+    ]
+}
