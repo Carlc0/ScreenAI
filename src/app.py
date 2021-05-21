@@ -46,7 +46,7 @@ exit = False
 try:
     while (exit==False):
         print("itereacion")
-        hablar("Sistema online. Introduzca comando: ")
+        hablar("Yamarashi online. Introduzca comando: ")
         statement = escuchar()
         print(statement)
         #Error
