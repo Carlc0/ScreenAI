@@ -6,6 +6,12 @@
         "webbrowser",
         "time",
         "json",
-        "requests"
+        "requests",
+        "SpeechRecognition",
+        "pyaudio"
+    ],
+    "extra":[
+        
     ]
+
 }
