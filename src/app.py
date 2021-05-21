@@ -21,20 +21,21 @@ engine = pyttsx3.init()
 #  Funcion decir cosas por el 
 #  
 def hablar(texto):
+    print(texto)
     engine.say(texto)
     engine.runAndWait()
 
 
 def escuchar():
-    esc = sr.Recognizer() 
-    with sr.Microphone() as source:
-        raw = esc.listen(source)
-        try:
-            ret = esc.recognize_google(raw, languaje='es')
-            return {"ok":0, "return":ret}
-        except Exception:
-            return {"ok":1, "error": Exception}
-    sr.listen()
+    try:
+        esc = sr.Recognizer() 
+        with sr.Microphone() as source:
+            raw = esc.listen(source)
+            ret = esc.recognize_google(raw, languaje='in-en')
+            return {"ok":0, "ret":ret}
+    except Exception:
+        print(Exception)
+        return {"ok":1, "error": Exception}
         
 ##
 # Main function
@@ -47,9 +48,10 @@ try:
         print("itereacion")
         hablar("Sistema online. Introduzca comando: ")
         statement = escuchar()
+        print(statement)
         #Error
-        if statement.ok==1:
-            print("Error: "+statement.error)
+        if statement["ok"]==1:
+            raise Exception(statement["error"])
         #Salir
         elif "parar programa" in statement.ret:
             hablar('Sistema offline. Adios')
@@ -73,5 +75,5 @@ try:
         elif "apagar ordenador" in statement.ret:
             hablar("Apagando Ordenador")
             subprocess.call(["shutdown", "/l"])
-except:
-    print('Error inesperado')
+except Exception:
+    print(Exception.with_traceback)
