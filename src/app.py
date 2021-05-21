@@ -37,7 +37,7 @@ try:
         if statement.count==0:
             print('Error')
         #Salir
-        elif "adios" in statement or "salir" in statement or "parar" in statement:
+        elif "parar programa" in statement:
             hablar('Sistema offline. Adios')
             exit = True
         
@@ -56,7 +56,7 @@ try:
             time.sleep(5)
             
         #
-        elif "log off" in statement or "sign out" in statement:
+        elif "apagar ordenador" in statement:
             hablar("Apagando Ordenador")
             subprocess.call(["shutdown", "/l"])
 except:
