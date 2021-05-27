@@ -40,8 +40,6 @@ def escuchar():
 ##
 # Main function
 # 
-
-    
 exit = False
 try:
     while (exit==False):
