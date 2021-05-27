@@ -8,6 +8,7 @@ try:
     import json
     import requests
     import speech_recognition as sr
+    import pymongo
     from dotenv import load_dotenv
 except Exception:
     print("Error: library not found")
