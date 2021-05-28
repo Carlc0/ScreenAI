@@ -1,5 +1,10 @@
 #Imports
+from speech_recognition import Microphone
+
+
 try:
+    from tkinter import *
+    import threading
     import pyttsx3
     import os
     import subprocess
@@ -8,15 +13,19 @@ try:
     import json
     import requests
     import speech_recognition as sr
-    import pymongo
+    from tkinter import filedialog as FileDialog
+    from io import open
+    from pymongo import MongoClient
     from dotenv import load_dotenv
 except Exception:
     print("Error: library not found")
-    print(Exception)
+    exit()
 
 
 #Inicializador de reconocimiento de voz
 engine = pyttsx3.init()
+
+ruta = ""
 
 ##
 #  Funcion decir cosas por el 
@@ -29,23 +38,97 @@ def hablar(texto):
 
 def escuchar():
     try:
-        esc = sr.Recognizer() 
+        r = sr.Recognizer() 
         with sr.Microphone() as source:
-            raw = esc.listen(source)
-            ret = esc.recognize_google(raw, languaje='in-en')
-            return {"ok":0, "ret":ret}
+            print (Microphone.list_microphone_names())
+            raw = r.listen(source)
+            ret = r.recognize_google(raw, languaje='in-en')
+            return ret
     except Exception:
-        print(Exception)
+        print(Exception.args)
+        return {"ok":1, "error": Exception}
+
+def escribir():
+    try:
+        print("escribir")
+    except Exception:
+        print(Exception.args)
         return {"ok":1, "error": Exception}
         
+def herramientas():
+    global ruta
+    mensaje.set("Nuevo fichero")
+    ruta = ""
+    texto.delete(1.0, "end")
+    root.title("Mi editor")
+
+def usuario():
+    global ruta
+    mensaje.set("Abrir fichero")
+    ruta = FileDialog.askopenfilename(
+        initialdir='.',
+        filetypes=(("Ficheros de texto", "*.txt"),),
+        title="Abrir un fichero de texto")
+    if ruta != "":
+        fichero = open(ruta, 'r')
+        contenido = fichero.read()
+        texto.delete(1.0,'end')
+        texto.insert('insert', contenido)
+        fichero.close()
+        root.title(ruta + " - Mi editor")
+
+def configuracion():
+    mensaje.set("Guardar fichero")
+    if ruta != "":
+        contenido = texto.get(1.0,'end-1c')
+        fichero = open(ruta, 'w+')
+        fichero.write(contenido)
+        fichero.close()
+        mensaje.set("Fichero guardado correctamente")
+
+def dirs():
+    if(os.path.exists(os.path.join('modules/extra', '.py'))):
+        for files in os.walk('modules/extra'):
+            print("Files: "+files)
+
 ##
 # Main function
 # 
 exit = False
 try:
+    root = Tk()
+    root.title("ScreenAI")
+    root.geometry("500x400")
+    # Menú superior
+    menubar = Menu(root)
+    filemenu = Menu(menubar, tearoff=0)
+    menubar.add_command(label="Herramientas", command=herramientas)
+    menubar.add_command(label="Usuario", command=usuario)
+    menubar.add_command(label="Configuracion", command=configuracion)
+    menubar.add_separator()
+    menubar.add_command(label="Salir", command=root.quit)
+
+    # Caja de texto central
+    texto = Label(root)
+    texto.grid(row=10, column=50)
+    texto.pack()
+    texto.config(bd=0, padx=6, pady=4, font=("Consolas",12))
+
+    # Monitor inferior
+    mensaje = Entry()
+    mensaje.pack(side="left")
+
+
+    root.config(menu=menubar)
+
+    # Bucle de la apliación
+    root.mainloop()
+
+    dirs()
+
     while (exit==False):
         print("itereacion")
-        hablar("Yamarashi online. Introduzca comando: ")
+        hablar("Sistemas online. Introduzca comando: ")
         statement = escuchar()
         print(statement)
         #Error
@@ -75,4 +158,4 @@ try:
             hablar("Apagando Ordenador")
             subprocess.call(["shutdown", "/l"])
 except Exception:
-    print(Exception.with_traceback)
+    print("Fallo en Main")
