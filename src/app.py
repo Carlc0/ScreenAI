@@ -56,26 +56,18 @@ def escribir():
         return {"ok":1, "error": Exception}
         
 def herramientas():
-    global ruta
-    mensaje.set("Nuevo fichero")
-    ruta = ""
-    texto.delete(1.0, "end")
-    root.title("Mi editor")
+    try:
+        print("escribir")
+    except Exception:
+        print(Exception.args)
+        return {"ok":1, "error": Exception}
 
 def usuario():
-    global ruta
-    mensaje.set("Abrir fichero")
-    ruta = FileDialog.askopenfilename(
-        initialdir='.',
-        filetypes=(("Ficheros de texto", "*.txt"),),
-        title="Abrir un fichero de texto")
-    if ruta != "":
-        fichero = open(ruta, 'r')
-        contenido = fichero.read()
-        texto.delete(1.0,'end')
-        texto.insert('insert', contenido)
-        fichero.close()
-        root.title(ruta + " - Mi editor")
+    try:
+        print("escribir")
+    except Exception:
+        print(Exception.args)
+        return {"ok":1, "error": Exception}
 
 def configuracion():
     mensaje.set("Guardar fichero")
@@ -127,7 +119,6 @@ try:
     dirs()
 
     while (exit==False):
-        print("itereacion")
         hablar("Sistemas online. Introduzca comando: ")
         statement = escuchar()
         print(statement)
