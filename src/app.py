@@ -1,6 +1,4 @@
 #Imports
-from speech_recognition import Microphone
-
 
 try:
     from tkinter import *
@@ -13,7 +11,6 @@ try:
     import json
     import requests
     import speech_recognition as sr
-    from tkinter import filedialog as FileDialog
     from io import open
     from pymongo import MongoClient
     from dotenv import load_dotenv
@@ -40,7 +37,7 @@ def escuchar():
     try:
         r = sr.Recognizer() 
         with sr.Microphone() as source:
-            print (Microphone.list_microphone_names())
+            print (sr.Microphone.list_microphone_names())
             raw = r.listen(source)
             ret = r.recognize_google(raw, languaje='in-en')
             return ret
