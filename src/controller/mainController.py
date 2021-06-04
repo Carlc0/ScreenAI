@@ -64,7 +64,6 @@ def execute(script):
         if(ret==False):
             for(dirpath, dirnames, filenames) in os.walk(extra_modules):
                 for elems in filenames:
-                    print(elems)
                     if(elems == script and ret==False):
                         runpy.run_path(path_name=os.path.join(extra_modules, script))
                         ret=True
