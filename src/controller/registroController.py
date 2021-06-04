@@ -9,7 +9,6 @@ db = client.ScrenAi
 def registro(user):
     ret=True
     try:
-        salt = os.urandom(32)
 
         posts = db.usuarios
 
@@ -18,6 +17,7 @@ def registro(user):
         if(inserted == 'null'):
             ret = False
     except:
+        print("Something went wrong")
         ret = False
     finally:
         return ret
@@ -32,6 +32,7 @@ def login(user):
         if(inserted == 'null'):
             ret = False
     except:
+        print("Something went wrong")
         ret = False
     finally:
         return ret

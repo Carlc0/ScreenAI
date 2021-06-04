@@ -36,5 +36,4 @@ def escuchar():
             ret = r.recognize_google(raw, languaje='in-en')
             return ret
     except Exception:
-        print(Exception.args)
         return json.dump({"ok":1, "error": Exception})
