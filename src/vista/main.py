@@ -1,6 +1,19 @@
 
 from tkinter import *
+
+from dotenv import main
 from controller.mainController import *
+import vista
+
+
+def herramientas():
+     print("Herramientas")
+
+def usuario():
+    exec(open(vista.usuario).read())
+
+def configuracion():
+    print("Configuracion")
 
 root = Tk()
 root.title("ScreenAI")

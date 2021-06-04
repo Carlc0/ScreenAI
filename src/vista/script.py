@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import filedialog as FileDialog
+from controller.scriptController import *
 from io import open
 import os
 

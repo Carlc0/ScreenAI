@@ -19,22 +19,6 @@ except Exception:
     print("Error: library not found")
     exit()
 
-def herramientas():
-    try:
-        print("escribir")
-    except Exception:
-        print(Exception.args)
-        return {"ok":1, "error": Exception}
-
-def usuario():
-    try:
-        print("escribir")
-    except Exception:
-        print(Exception.args)
-        return {"ok":1, "error": Exception}
-
-def configuracion():
-    print("Configuracion")
 
 
 def hablar():

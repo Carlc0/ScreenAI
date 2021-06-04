@@ -37,4 +37,4 @@ def escuchar():
             return ret
     except Exception:
         print(Exception.args)
-        return {"ok":1, "error": Exception}
+        return json.dump({"ok":1, "error": Exception})
