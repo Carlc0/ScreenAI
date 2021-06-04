@@ -1,12 +1,18 @@
+import runpy
 from tkinter import *
 import os
 import sys
-registroController = open(os.path.join(os.path.dirname(__file__), "..\\controller\\registroController.py"))
-#open(sys.path.append('../controller/'))
 from pymongo import MongoClient
 import hashlib
 import os
 import json
+import importlib.util as imps
+
+main = os.path.join(os.path.dirname(__file__), "main.py")
+
+spec = imps.spec_from_file_location("registroController",os.path.join(os.path.dirname(__file__), "..\\controller\\registroController.py"))
+registroController = imps.module_from_spec(spec)
+spec.loader.exec_module(registroController)
 
 client = MongoClient("mongodb://localhost:27017")
 db = client.ScrenAi
@@ -17,7 +23,6 @@ def registrer():
 
         user = json.dumps({"nombre": nombre.get(), "mail":mail.get(), "contrasena":contrasena.get()})
 
-        print(registroController)
         user = registroController.registro(user)
 
         if(user == False): raise Exception
@@ -27,9 +32,14 @@ def registrer():
 def logein(user):
     ret=True
     try:
+        
+        user = json.dumps({"mail":mail.get(), "contrasena":contrasena.get()})
+
         posts = db.usuarios
 
         inserted = posts.find_one(user)
+
+        runpy.run_path(path_name=main)
 
         if(inserted == 'null'):
             ret = False
