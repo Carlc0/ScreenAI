@@ -1,3 +1,5 @@
+from os import walk
+import runpy
 from pyttsx3 import engine
 
 
@@ -18,6 +20,11 @@ try:
 except Exception:
     print("Error: library not found")
     exit()
+
+
+core_modules = os.path.join(os.path.dirname(__file__), "..\\modules\\core\\")
+
+extra_modules = os.path.join(os.path.dirname(__file__), "..\\modules\\extra\\")
 
 
 
@@ -43,3 +50,25 @@ def speechrecog():
     #Error
     if statement["ok"]==1:
         raise Exception(statement["error"])
+
+
+def execute(script):
+    ret = False
+    script = script + ".py"
+    try:
+        for(dirpath, dirnames, filenames) in os.walk(core_modules):
+            print(script)
+            if(filenames == script and ret==False):
+                runpy.run_path(path_name=os.path.join(core_modules, script))
+                ret=True
+        if(ret==False):
+            for(dirpath, dirnames, filenames) in os.walk(extra_modules):
+                for elems in filenames:
+                    print(elems)
+                    if(elems == script and ret==False):
+                        runpy.run_path(path_name=os.path.join(extra_modules, script))
+                        ret=True
+    except:
+        print("Something went wrong")
+    finally:
+        return ret

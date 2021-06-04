@@ -3,15 +3,15 @@ from tkinter import *
 import os
 from dotenv import main
 import runpy
+import importlib.util as imps
 
 
-registroController = open(os.path.join(os.path.dirname(__file__), "..\\controller\\registroController.py"))
+spec = imps.spec_from_file_location("mainController",os.path.join(os.path.dirname(__file__), "..\\controller\\mainController.py"))
+mainController = imps.module_from_spec(spec)
+spec.loader.exec_module(mainController)
+
 
 vista = os.path.join(os.path.dirname(__file__), "usuario.py")
-
-core_modules = os.path.join(os.path.dirname(__file__), "..\\modules\\core\\")
-
-extra_modules = os.path.join(os.path.dirname(__file__), "..\\modules\\extra\\")
 
 
 
@@ -19,11 +19,13 @@ def herramientas():
      print("Herramientas")
 
 def usuario():
-    print(vista)
     runpy.run_path(path_name=vista)
 
 def configuracion():
     print("Configuracion")
+
+def executeScript():
+    mainController.execute(mensaje.get())
 
 root = Tk()
 root.title("ScreenAI")
@@ -48,7 +50,8 @@ texto.config(bd=0, padx=6, pady=4, font=("Consolas",12))
 mensaje = Entry()
 mensaje.pack(side="top")
 
-bttn = Button(root, text="Introducir comando")
+bttn = Button(root, text="Introducir comando", command=executeScript)
+bttn.pack()
 
 
 root.config(menu=menubar)
