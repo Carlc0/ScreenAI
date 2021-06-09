@@ -21,7 +21,7 @@ def reconsComms():
     print("Herramientas")
 
 def nuevoComm():
-    runpy.run_path(script)
+    runpy.run_path(path_name=script)
 
 def usuario():
     runpy.run_path(path_name=vista)

@@ -54,7 +54,7 @@ def speechrecog():
 
 def execute(script):
     ret = False
-    script = script + ".py"
+    script = script
     try:
         for(dirpath, dirnames, filenames) in os.walk(core_modules):
             print(script)
