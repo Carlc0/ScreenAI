@@ -5,12 +5,12 @@
         {
             "accion": "decir",
             "objeto": "hola",
-            "archivo": ["decir_hola.py"]
+            "archivo": "decir_hola.py"
         },
         {
             "accion": "abrir",
             "objeto": "gmail",
-            "archivo": ["abrir_gmail.py"]
+            "archivo": "abrir_gmail.py"
         }
     ]
 }

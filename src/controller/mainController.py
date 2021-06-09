@@ -1,6 +1,7 @@
 from os import walk
 import runpy
 from pyttsx3 import engine
+from string import *
 
 
 try:
@@ -21,6 +22,7 @@ except Exception:
     print("Error: library not found")
     exit()
 
+diccionario =  os.path.join(os.path.dirname(__file__), "..\\dicc\\commands.json\\")
 
 core_modules = os.path.join(os.path.dirname(__file__), "..\\modules\\core\\")
 
@@ -54,20 +56,41 @@ def speechrecog():
 
 def execute(script):
     ret = False
-    script = script
+    
     try:
+        fin=""
+        palabras = desglosar(script)
+        if(palabras == False):
+            raise Exception
+        print(script)
+        dicc = json.loads(diccionario)
+        for comando in dicc.script:
+            if(comando.accion == palabras[0] and comando.objeto == palabras[1]):
+                fin = comando.archivo
+
+        if(fin == ""): 
+            raise Exception
+
         for(dirpath, dirnames, filenames) in os.walk(core_modules):
-            print(script)
-            if(filenames == script and ret==False):
-                runpy.run_path(path_name=os.path.join(core_modules, script))
+            if(filenames == fin and ret==False):
+                runpy.run_path(path_name=os.path.join(core_modules, fin))
                 ret=True
         if(ret==False):
             for(dirpath, dirnames, filenames) in os.walk(extra_modules):
                 for elems in filenames:
-                    if(elems == script and ret==False):
-                        runpy.run_path(path_name=os.path.join(extra_modules, script))
+                    if(elems == fin and ret==False):
+                        runpy.run_path(path_name=os.path.join(extra_modules, fin))
                         ret=True
     except:
-        print("Something went wrong")
+        print("Algo fue mal")
     finally:
         return ret
+
+################### Funciones auxiliares ####################
+def desglosar(comando):
+    try:
+        print(comando)
+        return ["decir", "hola"]
+    except:
+        print("Error al parsear")
+        return False

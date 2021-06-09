@@ -2,6 +2,11 @@ from tkinter import *
 from tkinter import filedialog as FileDialog
 from io import open
 import os
+import importlib.util as imps
+
+spec = imps.spec_from_file_location("scriptController",os.path.join(os.path.dirname(__file__), "..\\controller\\scriptController.py"))
+scriptController = imps.module_from_spec(spec)
+spec.loader.exec_module(scriptController)
 
 def nuevo():
     global ruta
@@ -12,17 +17,12 @@ def nuevo():
 def abrir():
     ruta = ""
     mensaje.set("Abrir fichero")
-    ruta = FileDialog.askopenfilename(
-        initialdir='.',
-        filetypes=(("Script", "*.py"),),
-        title="Abrir un script")
-    if ruta != "":
-        fichero = open(ruta, 'r')
-        contenido = fichero.read()
-        texto.delete(1.0,'end')
-        texto.insert('insert', contenido)
-        fichero.close()
-        root.title(ruta + " - Mi editor")
+    contenido = scriptController.abrir(ruta)
+    if(contenido == ""):
+        contenido = "Ha ocurrido un error al abrir el archivo"
+    texto.delete(1.0,'end')
+    texto.insert('insert', contenido)
+    root.title(ruta + " - Mi editor")
 
 def guardar():
     mensaje.set("Guardar fichero")

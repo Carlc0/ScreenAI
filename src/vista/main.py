@@ -31,7 +31,7 @@ def configuracion():
 
 def executeScript():
     if(mainController.execute(mensaje.get())==False):
-        messagebox.showerror(title="Error", message="")
+        consola.set(consola.get()+"\nComando no reconocido")
 
 root = Tk()
 root.title("ScreenAI")
@@ -52,9 +52,10 @@ menubar.add_command(label="Salir", command=root.quit)
 
 # Caja de texto central
 consola = StringVar()
+consola.set("Bienvenido a ScreenAi")
 texto = Label(textvariable=consola)
 texto.pack()
-texto.config(bd=0, padx=6, pady=4, font=("Consolas",12))
+texto.config(bd=1, padx=6, pady=4, font=("Consolas",12))
 
 # Monitor inferior
 mensaje = Entry()
