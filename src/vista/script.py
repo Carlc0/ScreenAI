@@ -3,10 +3,13 @@ from tkinter import filedialog as FileDialog
 from io import open
 import os
 import importlib.util as imps
+import tkinter
 
 spec = imps.spec_from_file_location("scriptController",os.path.join(os.path.dirname(__file__), "..\\controller\\scriptController.py"))
 scriptController = imps.module_from_spec(spec)
 spec.loader.exec_module(scriptController)
+
+logo = os.path.join(os.path.dirname(__file__), "..\\imgs\\logo.png")#import de script
 
 def nuevo():
     global ruta
@@ -56,6 +59,7 @@ ruta = '../modules/extra/mod.py'
 try:
     # Configuración de la raíz
     root = Tk()
+    root.iconphoto(False, tkinter.PhotoImage(file=logo))
     root.title("Mi editor")
     # Menú superior
     menubar = Menu(root)

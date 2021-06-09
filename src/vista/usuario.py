@@ -1,8 +1,15 @@
 from tkinter import *
+import tkinter
+import os
+
+logo = os.path.join(os.path.dirname(__file__), "..\\imgs\\logo.png")#import de script
+
 
 rooter = Tk()
 rooter.title("ScreenAI")
 rooter.geometry("600x400")
+rooter.iconphoto(False, tkinter.PhotoImage(file=logo))
+
 
     # Caja de texto central
 rooter.columnconfigure(0, weight = 1, minsize = 75)

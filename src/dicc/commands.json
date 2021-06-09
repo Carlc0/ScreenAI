@@ -1,4 +1,6 @@
 {
+    "accion":["decir", "abrir"],
+    "objeto": ["hola", "gmail", "youtube","google"],
     "script":[
         {
             "accion": "decir",

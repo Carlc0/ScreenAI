@@ -14,7 +14,7 @@ spec.loader.exec_module(mainController)
 
 vista = os.path.join(os.path.dirname(__file__), "usuario.py")#import de vista
 script = os.path.join(os.path.dirname(__file__), "script.py")#import de script
-
+logo = os.path.join(os.path.dirname(__file__), "..\\imgs\\logo.png")#import de script
 
 
 def reconsComms():
@@ -36,6 +36,7 @@ def executeScript():
 root = Tk()
 root.title("ScreenAI")
 root.geometry("500x200")
+root.iconphoto(False, tkinter.PhotoImage(file=logo))
 root.columnconfigure(0, weight = 1, minsize = 75)
 root.rowconfigure(0, weight = 1, minsize = 75)
 # Menú superior
