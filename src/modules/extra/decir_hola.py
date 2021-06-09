@@ -1,2 +1,3 @@
+import webbrowser
 
-print("Hola")
+webbrowser.open_new_tab('www.youtube.com')

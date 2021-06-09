@@ -1,6 +1,8 @@
 
 from tkinter import *
+from tkinter import messagebox
 import os
+import tkinter
 from dotenv import main
 import runpy
 import importlib.util as imps
@@ -10,13 +12,16 @@ spec = imps.spec_from_file_location("mainController",os.path.join(os.path.dirnam
 mainController = imps.module_from_spec(spec)
 spec.loader.exec_module(mainController)
 
+vista = os.path.join(os.path.dirname(__file__), "usuario.py")#import de vista
+script = os.path.join(os.path.dirname(__file__), "script.py")#import de script
 
-vista = os.path.join(os.path.dirname(__file__), "usuario.py")
 
 
+def reconsComms():
+    print("Herramientas")
 
-def herramientas():
-     print("Herramientas")
+def nuevoComm():
+    runpy.run_path(script)
 
 def usuario():
     runpy.run_path(path_name=vista)
@@ -25,28 +30,33 @@ def configuracion():
     print("Configuracion")
 
 def executeScript():
-    mainController.execute(mensaje.get())
+    if(mainController.execute(mensaje.get())==False):
+        messagebox.showerror(title="Error", message="")
 
 root = Tk()
 root.title("ScreenAI")
-root.geometry("500x400")
+root.geometry("500x200")
 root.columnconfigure(0, weight = 1, minsize = 75)
 root.rowconfigure(0, weight = 1, minsize = 75)
-    # Menú superior
+# Menú superior
 menubar = Menu(root)
+#Menu herramientas
 filemenu = Menu(menubar, tearoff=0)
-menubar.add_command(label="Herramientas", command=herramientas)
+filemenu.add_command(label="Implementar nueva funcionalidad", command=nuevoComm)
+filemenu.add_command(label="Reconstruir arbol de comandos", command=reconsComms)
+menubar.add_cascade(menu=filemenu, label="Herramientas")
 menubar.add_command(label="Usuario", command=usuario)
 menubar.add_command(label="Configuracion", command=configuracion)
 menubar.add_separator()
 menubar.add_command(label="Salir", command=root.quit)
 
-    # Caja de texto central
-texto = Label(root, text="Introduzca comando")
+# Caja de texto central
+consola = StringVar()
+texto = Label(textvariable=consola)
 texto.pack()
 texto.config(bd=0, padx=6, pady=4, font=("Consolas",12))
 
-    # Monitor inferior
+# Monitor inferior
 mensaje = Entry()
 mensaje.pack(side="top")
 

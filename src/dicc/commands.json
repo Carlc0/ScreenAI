@@ -1,0 +1,16 @@
+{
+    "accion":["decir", "abrir", "good"],
+    "objeto":["google", "gmail", "youtube", "hola", "day"],
+    "script":[
+        {
+            "accion": "decir",
+            "objeto": "hola",
+            "archivo": ["decir_hola.py"]
+        },
+        {
+            "accion": "abrir",
+            "objeto": "gmail",
+            "archivo": ["abrir_gmail.py"]
+        }
+    ]
+}
