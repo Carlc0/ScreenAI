@@ -10,7 +10,7 @@ import json
 import importlib.util as imps
 
 main = os.path.join(os.path.dirname(__file__), "main.py")
-logo = os.path.join(os.path.dirname(__file__), "..\\imgs\\logo.png")#import de script
+logo = os.path.join(os.path.dirname(__file__), "..\\imgs\\logo.png")#import de logo
 
 spec = imps.spec_from_file_location("registroController",os.path.join(os.path.dirname(__file__), "..\\controller\\registroController.py"))
 registroController = imps.module_from_spec(spec)
@@ -53,7 +53,7 @@ def logein(user):
 root = Tk()
 root.title("ScreenAI")
 root.geometry("600x400")
-root.iconphoto(False, tkinter.PhotoImage(file=logo))
+root.iconphoto(True, tkinter.PhotoImage(file=logo))
 
     # Caja de texto central
 root.columnconfigure(0, weight = 1, minsize = 75)

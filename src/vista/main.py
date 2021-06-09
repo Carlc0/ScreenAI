@@ -36,7 +36,7 @@ def executeScript():
 root = Tk()
 root.title("ScreenAI")
 root.geometry("500x200")
-root.iconphoto(False, tkinter.PhotoImage(file=logo))
+root.iconphoto(True, tkinter.PhotoImage(file=logo))
 root.columnconfigure(0, weight = 1, minsize = 75)
 root.rowconfigure(0, weight = 1, minsize = 75)
 # Menú superior

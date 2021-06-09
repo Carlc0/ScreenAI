@@ -30,11 +30,7 @@ def abrir():
 def guardar():
     mensaje.set("Guardar fichero")
     contenido = texto.get(1.0,'end-1c')
-    route = os.path.join(os.path.realpath('__file__'), ruta)
-    route = os.path.abspath(os.path.realpath(route))
-    fichero = open(route, 'w+')
-    fichero.write(contenido)
-    fichero.close()
+    scriptController.guardar(contenido, "decirhola","saludar", "ahora")
     mensaje.set("Fichero guardado correctamente")
 
 def guardar_como():
@@ -59,7 +55,6 @@ ruta = '../modules/extra/mod.py'
 try:
     # Configuración de la raíz
     root = Tk()
-    root.iconphoto(False, tkinter.PhotoImage(file=logo))
     root.title("Mi editor")
     # Menú superior
     menubar = Menu(root)
@@ -67,7 +62,6 @@ try:
     filemenu.add_command(label="Nuevo", command=nuevo)
     filemenu.add_command(label="Abrir", command=abrir)
     filemenu.add_command(label="Guardar", command=guardar)
-    filemenu.add_command(label="Guardar como", command=guardar_como)
     filemenu.add_separator()
     filemenu.add_command(label="Salir", command=root.quit)
     menubar.add_cascade(menu=filemenu, label="Archivo")
