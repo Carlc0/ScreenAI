@@ -68,5 +68,8 @@ bttn.pack()
 
 root.config(menu=menubar)
 
-# Bucle de la apliación
+mainController.hablar("ScreenAi operativo, introduzca comando")
+
+# Bucle de la aplicación
 root.mainloop()
+

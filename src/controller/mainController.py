@@ -1,6 +1,5 @@
 from os import walk
 import runpy
-from pyttsx3 import engine
 from string import *
 
 
@@ -28,10 +27,11 @@ core_modules = os.path.join(os.path.dirname(__file__), "..\\modules\\core\\")
 
 extra_modules = os.path.join(os.path.dirname(__file__), "..\\modules\\extra\\")
 
+engine = pyttsx3.init()
 
-
-def hablar():
-    engine = pyttsx3.init()
+def hablar(texto):
+    engine.say(texto)
+    engine.runAndWait()
 
 def escuchar():
     try:
