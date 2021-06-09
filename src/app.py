@@ -1,7 +1,7 @@
 #Imports
 
 try:
-    from vista import registro
+    from vista import main
     from dotenv import load_dotenv
     import runpy
     import os
@@ -11,9 +11,9 @@ except Exception:
 
 if(True):
     try:
-        proof = os.path.join(os.path.dirname(__file__), "..\\controler\\registroController.py")
+        proof = os.path.join(os.path.dirname(__file__), "..\\controler\\mainController.py")
         print(proof)
-        runpy.run_module(registro)
+        runpy.run_module(main)
     except:
         print("path wrong")
         exit()

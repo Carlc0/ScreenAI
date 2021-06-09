@@ -51,3 +51,4 @@ def guardar(script, nombre, accion, objeto):
         nuevoDicc.close()
     except:
         print("error")
+        raise Exception

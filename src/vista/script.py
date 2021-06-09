@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import filedialog as FileDialog
+from tkinter import messagebox
 from io import open
 import os
 import importlib.util as imps
@@ -28,10 +29,13 @@ def abrir():
     root.title(ruta + " - Mi editor")
 
 def guardar():
-    mensaje.set("Guardar fichero")
-    contenido = texto.get(1.0,'end-1c')
-    scriptController.guardar(contenido, "decirhola","saludar", "ahora")
-    mensaje.set("Fichero guardado correctamente")
+    try:
+        mensaje.set("Guardar fichero")
+        contenido = texto.get(1.0,'end-1c')
+        scriptController.guardar(contenido, "decirhola","saludar", "ahora")
+        mensaje.set("Fichero guardado correctamente")
+    except:
+        messagebox.showerror("Error", "Error al introducir funcionalidad")
 
 def guardar_como():
     global ruta
